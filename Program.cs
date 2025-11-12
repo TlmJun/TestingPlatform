@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using practice.Middlewares;
 using TestingPlatform.Application.Interfaces;
 using TestingPlatform.Infrastructure;
 using TestingPlatform.Infrastructure.Db;
@@ -39,7 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 
