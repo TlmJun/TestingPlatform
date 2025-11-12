@@ -1,3 +1,3 @@
-﻿namespace practice.Responses.Direction;
+﻿namespace TestingPlatform.Responses;
 
 public class DirectionResponse : BaseResponse;

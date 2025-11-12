@@ -1,15 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace practice.Requests.Student;
-
-public class UpdateStudentRequest
+namespace TestingPlatform.Requests;
+public class CreateStudentRequest
 {
-    public int Id { get; set; }
+    [Required]
     public string? Login { get; set; }
-    [Required, EmailAddress]
-    public string? Email { get; set; }
     [Required]
     public string? Password { get; set; }
+    [Required, EmailAddress]
+    public string? Email { get; set; }
     [Required]
     public string? FirstName { get; set; }
     public string? MiddleName { get; set; }
@@ -17,7 +16,6 @@ public class UpdateStudentRequest
     public string? LastName { get; set; }
     [Required]
     public string? Phone { get; set; }
-    [Required]
+
     public string? VkProfileLink { get; set; }
 }
-

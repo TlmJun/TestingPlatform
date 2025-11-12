@@ -1,3 +1,3 @@
-﻿namespace practice.Responses.Course;
+﻿namespace TestingPlatform.Responses;
 
 public class CourseResponse : BaseResponse;

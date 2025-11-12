@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using practice.Requests.Student;
-using practice.Responses.Student;
+using TestingPlatform.Requests;
+using TestingPlatform.Responses;
 using TestingPlatform.Application.Dtos;
 
 namespace practice.Mappings;

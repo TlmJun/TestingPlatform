@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using practice.Requests.Student;
-using practice.Responses.Student;
+using TestingPlatform.Requests;
+using TestingPlatform.Responses;
 using TestingPlatform.Application.Dtos;
 using TestingPlatform.Application.Interfaces;
 using TestingPlatform.Domain.Enums;
