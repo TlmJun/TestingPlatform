@@ -1,17 +1,20 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TestingPlatform.Requests;
-using TestingPlatform.Responses;
+using practice.Requests.Student;
+using practice.Responses.Student;
 using TestingPlatform.Application.Dtos;
 using TestingPlatform.Application.Interfaces;
 using TestingPlatform.Domain.Enums;
 using TestingPlatform.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using TestingPlatform.Domain.Models;
 
 [ApiController]
 [Route("api/[controller]")]
 public class StudentsController(IStudentRepository studentRepository, IUserRepository userRepository, IMapper mapper) : ControllerBase
 {
-    [HttpGet]
+
+    [HttpGet("student/{studentId}")]
     public async Task<IActionResult> GetStudents()
     {
         var students = await studentRepository.GetAllAsync();
@@ -46,10 +49,22 @@ public class StudentsController(IStudentRepository studentRepository, IUserRepos
             Phone = student.Phone,
             VkProfileLink = student.VkProfileLink
         };
+        var user = new User
+        {
+            Login = "user123",
+            PasswordHash = "password123",
+            Email = "user@example.com",
+            FirstName = "Иван",
+            MiddleName = "Да",
+            LastName = "Иванов",
+            Role = UserRole.Student,
+            CreatedAt = DateTime.Now
+        };
 
         var studentId = await studentRepository.CreateAsync(studentDto);
 
         return StatusCode(StatusCodes.Status201Created, new { Id = studentId });
+
     }
     [HttpPut]
     public async Task<IActionResult> UpdateStudent([FromBody] UpdateStudentRequest student)

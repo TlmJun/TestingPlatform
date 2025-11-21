@@ -25,6 +25,10 @@ builder.Services.AddScoped<ITestRepository, TestRepository>();
 builder.Services.AddAutoMapper(cfg => cfg.AddMaps("TestingPlatform.Infrastructure"));
 builder.Services.AddAutoMapper(cfg => cfg.AddMaps("TestingPlatform"));
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("TestingPlatform.Infrastructure")));
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

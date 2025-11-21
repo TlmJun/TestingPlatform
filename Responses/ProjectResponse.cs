@@ -1,5 +1,4 @@
 ﻿using TestingPlatform.Responses;
-
-namespace TestingPlatform.Responses;
+namespace practice.Responses.Project;
 
 public class ProjectResponse : BaseResponse;
