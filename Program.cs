@@ -4,6 +4,7 @@ using TestingPlatform.Application.Interfaces;
 using TestingPlatform.Infrastructure;
 using TestingPlatform.Infrastructure.Db;
 using TestingPlatform.Infrastructure.Repositories;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,12 @@ builder.Services.AddAutoMapper(cfg => cfg.AddMaps("TestingPlatform"));
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("TestingPlatform.Infrastructure")));
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/app.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
