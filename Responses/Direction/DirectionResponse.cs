@@ -1,4 +1,4 @@
 ﻿using TestingPlatform.Responses;
-namespace practice.Responses.Direction;
+namespace Presentation_Layer.Responses.Direction;
 
 public class DirectionResponse : BaseResponse;

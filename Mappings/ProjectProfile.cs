@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using practice.Responses.Project;
+using Presentation_Layer.Responses.Project;
 using TestingPlatform.Application.Dtos;
 
 namespace practice.Mappings;

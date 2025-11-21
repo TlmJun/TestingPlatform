@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using practice.Requests.Group;
-using practice.Responses.Group;
+using Presentation_Layer.Responses.Group;
 using TestingPlatform.Application.Dtos;
 using TestingPlatform.Application.Interfaces;
 

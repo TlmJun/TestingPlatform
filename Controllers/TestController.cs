@@ -17,14 +17,8 @@ public class TestController(ITestRepository testRepository, IMapper mapper) : Co
     [HttpGet]
     public async Task<IActionResult> GetTests()
     {
-        var tests = await testRepository.GetAllAsync(null, null, null);
+        var tests = await testRepository.GetAllAsync(null, new List<int>(), new List<int>());
         return Ok(mapper.Map<IEnumerable<TestResponse>>(tests));
-    }
-    [HttpGet("student/{studentId:int}")]
-    public async Task<IActionResult> GetAllForStudent(int id)
-    {
-        var students = await testRepository.GetAllForStudent(id);
-        return Ok(mapper.Map<IEnumerable<TestResponse>>(students));
     }
     [HttpGet(("{Id:int}"))]
     public async Task<IActionResult> GetByIdAsync(int Id)

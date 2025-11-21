@@ -1,4 +1,4 @@
 ﻿using TestingPlatform.Responses;
-namespace practice.Responses.Project;
+namespace Presentation_Layer.Responses.Project;
 
 public class ProjectResponse : BaseResponse;

@@ -49,17 +49,6 @@ public class StudentsController(IStudentRepository studentRepository, IUserRepos
             Phone = student.Phone,
             VkProfileLink = student.VkProfileLink
         };
-        var user = new User
-        {
-            Login = "user123",
-            PasswordHash = "password123",
-            Email = "user@example.com",
-            FirstName = "Иван",
-            MiddleName = "Да",
-            LastName = "Иванов",
-            Role = UserRole.Student,
-            CreatedAt = DateTime.Now
-        };
 
         var studentId = await studentRepository.CreateAsync(studentDto);
 
