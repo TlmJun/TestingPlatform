@@ -5,6 +5,7 @@ using TestingPlatform.Infrastructure;
 using TestingPlatform.Infrastructure.Db;
 using TestingPlatform.Infrastructure.Repositories;
 using Serilog;
+using Serilog.Formatting.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,10 +33,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         b => b.MigrationsAssembly("TestingPlatform.Infrastructure")));
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("logs/app.log", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+   .MinimumLevel.Information()
+   .WriteTo.Console()
+   .WriteTo.File("logs/app.log")
+   .CreateLogger();
+
 builder.Host.UseSerilog();
+Log.Logger = new LoggerConfiguration()
+   .MinimumLevel.Information()
+   .WriteTo.Console()
+   .WriteTo.File(
+       formatter: new JsonFormatter(),
+       path: "logs/structured-.json")
+   .CreateLogger();
 
 var app = builder.Build();
 
