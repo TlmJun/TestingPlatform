@@ -2,7 +2,7 @@
 using TestingPlatform.Application.Dtos;
 using TestingPlatform.Domain.Models;
 
-namespace TestingPlatform.Infrastructure.Mappings;
+namespace practice.Mappings;
 
 public class QuestionProfile : Profile
 {

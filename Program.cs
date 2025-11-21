@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using practice.Middlewares;
 using TestingPlatform.Application.Interfaces;
-using TestingPlatform.Infrastructure;
 using TestingPlatform.Infrastructure.Db;
 using TestingPlatform.Infrastructure.Repositories;
 using Serilog;
@@ -24,6 +23,7 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<ITestRepository, TestRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IAttemptRepository, AttemptRepository>();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddMaps("TestingPlatform.Infrastructure"));
 builder.Services.AddAutoMapper(cfg => cfg.AddMaps("TestingPlatform"));
@@ -35,17 +35,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 Log.Logger = new LoggerConfiguration()
    .MinimumLevel.Information()
    .WriteTo.Console()
-   .WriteTo.File("logs/app.log")
-   .CreateLogger();
-
-builder.Host.UseSerilog();
-Log.Logger = new LoggerConfiguration()
-   .MinimumLevel.Information()
-   .WriteTo.Console()
    .WriteTo.File(
        formatter: new JsonFormatter(),
        path: "logs/structured-.json")
+   .WriteTo.SQLite("logs/logs.db")
    .CreateLogger();
+
+
 
 var app = builder.Build();
 
