@@ -14,7 +14,7 @@ using TestingPlatform.Domain.Models;
 public class StudentsController(IStudentRepository studentRepository, IUserRepository userRepository, IMapper mapper) : ControllerBase
 {
 
-    [HttpGet("student/{studentId}")]
+    [HttpGet]
     public async Task<IActionResult> GetStudents()
     {
         var students = await studentRepository.GetAllAsync();

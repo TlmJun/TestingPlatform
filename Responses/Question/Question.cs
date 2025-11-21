@@ -1,11 +1,9 @@
 ﻿using TestingPlatform.Domain.Enums;
 
 namespace practice.Responses.Question;
-
 public class QuestionResponse
 {
     public int Id { get; set; }
-
     public string Text { get; set; }
     public int Number { get; set; }
     public string Description { get; set; }
@@ -13,4 +11,3 @@ public class QuestionResponse
     public bool IsScoring { get; set; }
     public int MaxScore { get; set; }
 }
-

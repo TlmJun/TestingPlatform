@@ -31,6 +31,13 @@ builder.Services.AddAutoMapper(cfg => cfg.AddMaps("TestingPlatform"));
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("TestingPlatform.Infrastructure")));
+Log.Logger = new LoggerConfiguration()
+   .MinimumLevel.Information()
+   .WriteTo.Console()
+   .WriteTo.File("logs/app.log")
+   .CreateLogger();
+
+builder.Host.UseSerilog();
 
 Log.Logger = new LoggerConfiguration()
    .MinimumLevel.Information()
